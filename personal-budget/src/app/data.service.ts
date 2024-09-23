@@ -1,26 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-  private budgetData: Array<{ title: string; budget: number }> = [];
+  public newDataSource: any = [];
 
-  constructor(private http: HttpClient) {}
+  private dataSource: any = [];
 
-  fetchData(): Observable<{ myBudget: Array<{ title: string; budget: number }> }> {
-    return this.http.get<{ myBudget: Array<{ title: string; budget: number }> }>('http://localhost:3000/budget')
-      .pipe(
-        tap((res: any) => {
-          this.budgetData = res.myBudget;  // Populate the service variable with data
-        })
-      );
+  private apiUrl:string = "http://localhost:3000/budget";
+
+  fetchDataFromBackend() {
+    return this.http.get<any[]>(this.apiUrl);
   }
 
-  getBudgetData(): Array<{ title: string; budget: number }> {
-    return this.budgetData;
+  setDataSource(data: any[]): void {
+    this.dataSource = data;
+  }
+
+  setNewDataSource(data: any[]): void {
+    this.newDataSource = data;
+  }
+
+  getDataSource(): any[] {
+    return this.dataSource;
+  }
+
+  getNewDataSource():any[]{
+    return this.newDataSource;
+  }
+
+  constructor(private http: HttpClient) {
   }
 }

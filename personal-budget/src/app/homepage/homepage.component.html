@@ -2,7 +2,7 @@
 
 
   <pb-breadcrumbs></pb-breadcrumbs>
-  <pb-pie></pb-pie>
+
   <!-- This is an SEO Change (Header)-->
   <h1>Info</h1>
 
@@ -68,13 +68,12 @@
       </pb-article>
 
       <!-- This is a Semantic HTML Change (Aside)-->
-      <article>
-          <h1>Chart</h1>
-          <p>
-              <!-- This is an A11y Change (alt) -->
-              <canvas id="myChart" width="400" height="400" alt="Budget Chart"></canvas>
-          </p>
-      </article>
+      <div class="chart-container">
+        <h1>Chart</h1>
+        <canvas id="myChart"></canvas> <!-- This is for the Chart.js chart -->
+        <div id="pie-chart"></div> <!-- This is for the D3.js chart -->
+      </div>
+
 
   </div>
 
